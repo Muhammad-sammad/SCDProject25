@@ -1,6 +1,6 @@
 const readline = require('readline');
 const db = require('./db');
-require('./events/logger'); // Initialize event logger
+require('./events/logger');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -14,7 +14,11 @@ function menu() {
 2. List Records
 3. Update Record
 4. Delete Record
-5. Exit
+5. Search Records
+6. Sort Records
+7. Export Data
+8. View Vault Statistics
+9. Exit
 =====================
   `);
 
@@ -24,7 +28,7 @@ function menu() {
         rl.question('Enter name: ', name => {
           rl.question('Enter value: ', value => {
             db.addRecord({ name, value });
-            console.log('✅ Record added successfully!');
+            console.log('Record added successfully!');
             menu();
           });
         });
@@ -42,7 +46,7 @@ function menu() {
           rl.question('New name: ', name => {
             rl.question('New value: ', value => {
               const updated = db.updateRecord(Number(id), name, value);
-              console.log(updated ? '✅ Record updated!' : '❌ Record not found.');
+              console.log(updated ? 'Record updated!' : ' Record not found.');
               menu();
             });
           });
@@ -52,12 +56,38 @@ function menu() {
       case '4':
         rl.question('Enter record ID to delete: ', id => {
           const deleted = db.deleteRecord(Number(id));
-          console.log(deleted ? '🗑️ Record deleted!' : '❌ Record not found.');
+          console.log(deleted ? 'Record deleted!' : 'Record not found.');
           menu();
         });
         break;
 
       case '5':
+        rl.question('Enter search keyword: ', keyword => {
+          db.searchRecords(keyword);
+          menu();
+        });
+        break;
+
+      case '6':
+        rl.question('Sort by (name/date): ', field => {
+          rl.question('Order (asc/desc): ', order => {
+            db.sortRecords(field, order);
+            menu();
+          });
+        });
+        break;
+
+      case '7':
+        db.exportData();
+        menu();
+        break;
+
+      case '8':
+        db.showStatistics();
+        menu();
+        break;
+
+      case '9':
         console.log('👋 Exiting NodeVault...');
         rl.close();
         break;

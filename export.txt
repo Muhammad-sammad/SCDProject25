@@ -1,0 +1,11 @@
+NodeVault Data Export
+====================
+Export Date: 11/25/2025, 11:03:31 AM
+Total Records: 4
+File: export.txt
+
+Records:
+1. ID: 1764097078615 | Name: Ali | Value: 25 | Created: 2025-11-25
+2. ID: 1764097178059 | Name: Ahmed | Value: 30 | Created: 2025-11-25
+3. ID: 1764097204870 | Name: Umar | Value: 22 | Created: 2025-11-25
+4. ID: 1764097215031 | Name: Zain | Value: 28 | Created: 2025-11-25
