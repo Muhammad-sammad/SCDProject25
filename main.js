@@ -46,7 +46,7 @@ function menu() {
           rl.question('New name: ', name => {
             rl.question('New value: ', value => {
               const updated = db.updateRecord(Number(id), name, value);
-              console.log(updated ? 'Record updated!' : ' Record not found.');
+              console.log(updated ? 'Record updated!' : 'Record not found.');
               menu();
             });
           });
@@ -88,7 +88,7 @@ function menu() {
         break;
 
       case '9':
-        console.log('👋 Exiting NodeVault...');
+        console.log('Exiting NodeVault...');
         rl.close();
         break;
 
@@ -100,3 +100,4 @@ function menu() {
 }
 
 menu();
+
